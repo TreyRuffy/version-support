@@ -56,7 +56,7 @@ repositories {
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
-apply plugin: org.spongepowered.asm.gradle.plugins.MixinGradlePlugin
+apply plugin: 'org.spongepowered.mixin'
 
 mixin {
     add sourceSets.main, "mixins.refmap.json"
