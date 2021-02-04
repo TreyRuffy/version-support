@@ -9,3 +9,8 @@ gradlew.bat
 /artifacts/
 mc_out
 out/
+bin/
+.classpath
+.project
+.settings/
+.vscode/
