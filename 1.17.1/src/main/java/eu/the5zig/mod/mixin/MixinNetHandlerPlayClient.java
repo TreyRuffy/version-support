@@ -70,26 +70,24 @@ public abstract class MixinNetHandlerPlayClient {
         }
     }
 
-    @Inject(method = "onTitle", at = @At(value = "RETURN", ordinal = 0))
-    public void titleBar(TitleS2CPacket packet, CallbackInfo _ci) {
-        The5zigMod.getListener().onActionBar(packet.getText().getString());
+    @Inject(method = "onOverlayMessage", at = @At(value = "RETURN"))
+    public void titleBar(OverlayMessageS2CPacket packet, CallbackInfo _ci) {
+        The5zigMod.getListener().onActionBar(packet.getMessage().getString());
     }
 
-    @Inject(method = "onTitle", at = @At(value = "RETURN", ordinal = 1))
-    public void titleClear(TitleS2CPacket _packet, CallbackInfo _ci) {
+    @Inject(method = "onTitleClear", at = @At(value = "RETURN"))
+    public void titleClear(ClearTitleS2CPacket packet, CallbackInfo ci) {
         The5zigMod.getListener().onTitle(null, null);
     }
 
-    @Inject(method = "onTitle", at = @At(value = "RETURN", ordinal = 2))
+    @Inject(method = "onTitle", at = @At(value = "RETURN"))
     public void title(TitleS2CPacket packet, CallbackInfo _ci) {
-        String text = packet.getText() == null ? "" : packet.getText().getString();
-        switch (packet.getAction()) {
-            case TITLE:
-                The5zigMod.getListener().onTitle(text, null);
-                break;
-            case SUBTITLE:
-                The5zigMod.getListener().onTitle(null, text);
-                break;
-        }
+        The5zigMod.getListener().onTitle(packet.getTitle().getString(), null);
     }
+
+    @Inject(method = "onSubtitle", at = @At(value = "RETURN"))
+    public void subtitle(SubtitleS2CPacket packet, CallbackInfo ci) {
+        The5zigMod.getListener().onTitle(null, packet.getSubtitle().getString());
+    }
+
 }

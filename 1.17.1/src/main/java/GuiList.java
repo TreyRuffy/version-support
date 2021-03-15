@@ -213,7 +213,6 @@ public class GuiList<E extends Row> extends ElementListWidget implements IGuiLis
 		return isSelectedItem(id);
 	}
 
-	@Override
 	protected boolean isSelectedItem(int i) {
 		return selected == i;
 	}
